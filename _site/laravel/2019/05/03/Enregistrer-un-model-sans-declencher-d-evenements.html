@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrer un model sans déclencher d'évènements |  Oipnet - Developpeur Web indépendant</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/linearicons.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+<body>
+    <div id="main">
+        <header id="header">
+            <div class="container main-menu">
+                <div class="row align-items-center justify-content-between d-flex">
+                    <div id="logo">Oipnet</div>
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <section class="post-content-area single-post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mt-20 mb-20">Enregistrer un model sans déclencher d'évènements</h3>
+            </div>
+        </div>
+        <p>Au moment de l’enregistrement en base de données laravel déclenche des évènement grace au mécanisme d’<a href="https://laravel.com/docs/5.8/eloquent#observers">Observers</a>. 
+Il est parfoit nécessaire de désactiver ce mecanisme. 
+<!--more--></p>
+
+<p>Dans un tweet Taylor Otwell nous délivre une solution pour ne pas les déclencher</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">namespace</span> <span class="nx">App</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">saveQuietly</span><span class="p">(</span><span class="k">array</span> <span class="nv">$options</span><span class="o">=</span> <span class="p">[])</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">static</span><span class="o">::</span><span class="na">withoutEvents</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$options</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="nv">$options</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p>Source : <a href="https://twitter.com/taylorotwell/status/1123239506994499584?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1123239506994499584&amp;ref_url=https%3A%2F%2Fmurze.be%2Fexecute-eloquent-methods-without-firing-events">Twitter @taylorotwell</a></p>
+
+    </div>
+</section>
+
+
+        <footer class="footer-area section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <p class="footer-text">
+                                Copyright &copy;2019 Arnaud POINTET -
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="/js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+        <script src="/js/easing.min.js"></script>
+        <script src="/js/hoverIntent.js"></script>
+        <script src="/js/superfish.min.js"></script>
+        <script src="/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/js/jquery.magnific-popup.min.js"></script>
+        <script src="/js/jquery.tabs.min.js"></script>
+        <script src="/js/jquery.nice-select.min.js"></script>
+        <script src="/js/isotope.pkgd.min.js"></script>
+        <script src="/js/waypoints.min.js"></script>
+        <script src="/js/jquery.counterup.min.js"></script>
+        <script src="/js/simple-skillbar.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/mail-script.js"></script>
+        <script src="/js/main.js"></script>
+    </div>
+</body>
+</html>
