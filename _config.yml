@@ -6,3 +6,4 @@ collections:
 excerpt_separator: <!--more-->
 markdown: kramdown
 highlighter: rouge
+permalink: /:categories/:slug
